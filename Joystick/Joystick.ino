@@ -28,7 +28,7 @@ void loop() {
   yVal = analogRead(yPin);  
   servoAngle = map(yVal, 1023, 0, 0, 180);
   servoAngle = constrain(servoAngle, 0, 180);
-  if(servoAngle==180) ringBuzzer();
+  if(servoAngle==180) digitalWrite(buzzPin, HIGH);
   static int prevAngle = -1;
   if (abs(servoAngle - prevAngle) >= 2) {
     myServo.write(servoAngle);
@@ -37,8 +37,4 @@ void loop() {
   Serial.print("Servo angle = ");
   Serial.println(servoAngle);
   delay(delayTime);
-}
-
-void ringBuzzer(){
-  digitalWrite(buzzPin, HIGH);
 }
